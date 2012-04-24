@@ -7,6 +7,7 @@ FoiRegister::Application.routes.draw do
   root :to => 'redirection#front'
   
   resources :requests
+  resources :requestors
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

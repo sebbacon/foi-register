@@ -29,10 +29,10 @@
   </div>
 
   <%= f.fields_for(:state, :include_id => false) do |s| %>
-  <div class="field">
-    <%= s.label :state %><br />
-    <%= s.select(:id, State.all.collect {|s| [s.title, s.id]}) %>
-  </div>
+    <div class="field">
+      <%= s.label :state %><br />
+      <%= s.select(:id, State.all.collect {|s| [s.title, s.id]}) %>
+    </div>
   <% end %>
   
   <%# The body of the request %>

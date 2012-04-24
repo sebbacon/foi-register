@@ -1,0 +1,30 @@
+<%= form_for(@requestor) do |f| %>
+  <% if @requestor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@requestor.errors.count, "error") %> prohibited this requestor from being saved:</h2>
+
+      <ul>
+      <% @requestor.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, "Name of requestor" %><br />
+    <%= f.text_field :name, :size => 60 %>
+  </div>
+  <div class="field">
+    <%= f.label :email, "Email address" %><br />
+    <%= f.text_field :email, :size => 60 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :notes %><br />
+    <%= f.text_area :notes, :cols => 80 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
