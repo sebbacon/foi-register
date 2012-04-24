@@ -25,7 +25,7 @@ class RequestsController < ApplicationController
   # GET /requests/new.json
   def new
     @request = Request.new
-
+    @states = State.all()
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @request }
@@ -40,7 +40,10 @@ class RequestsController < ApplicationController
   # POST /requests
   # POST /requests.json
   def create
-    @request = Request.new(params[:request])
+    request = params[:request]
+    #state = State.find(request.delete(:state))
+    @request = Request.new(request)
+    # @request.state = state
 
     respond_to do |format|
       if @request.save

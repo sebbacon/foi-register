@@ -6,8 +6,8 @@
 </p>
 
 <p>
-  <b>Status:</b>
-  <%= @request.status %>
+  <b>State:</b>
+  <%= @request.state.title %> (history: <%= @request.states.collect{|state| [state.title, state.created_at]} %>)
 </p>
 
 <p>

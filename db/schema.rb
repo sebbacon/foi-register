@@ -10,13 +10,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120224182732) do
+ActiveRecord::Schema.define(:version => 20120424090008) do
+
+  create_table "request_states", :id => false, :force => true do |t|
+    t.integer  "request_id"
+    t.integer  "state_id"
+    t.text     "note"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "request_states", ["request_id", "state_id"], :name => "index_request_states_on_request_id_and_state_id"
 
   create_table "requestors", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.string   "phone"
-    t.text     "address"
     t.text     "notes"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -26,11 +34,20 @@ ActiveRecord::Schema.define(:version => 20120224182732) do
     t.string   "title"
     t.string   "status"
     t.integer  "requestor_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
     t.text     "body"
+    t.date     "date_received", :default => '2012-04-24', :null => false
   end
 
   add_index "requests", ["requestor_id"], :name => "index_requests_on_requestor_id"
+
+  create_table "states", :force => true do |t|
+    t.string   "tag"
+    t.string   "title"
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
 end

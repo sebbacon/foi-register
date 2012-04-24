@@ -13,17 +13,32 @@
 
   <div class="field">
     <%= f.label :title %><br />
-    <%= f.text_field :title %>
+    <%= f.text_field :title, :size => 120 %>
   </div>
+  <%# The requestor field should autocomplete using the database of
+       registered requestors, and also seamlessly allow type-in of a
+       new requestor name. In the latter case, the next screen will
+       allow the requestor details to be filled in. When the form is
+       submitted, the POSTed data will contain precisely one of
+       requestor_id and requestor_name %>
+  <%# XXXX Currently we just have a plain requestor_name field in this form. %>
+
   <div class="field">
-    <%= f.label :status %><br />
-    <%= f.text_field :status %>
+    <%= label_tag :requestor_name, "Name of requestor" %><br />
+    <%= text_field_tag :requestor_name, "", :size => 60 %>
   </div>
+
+  <%= f.fields_for(:state, :include_id => false) do |s| %>
+  <div class="field">
+    <%= s.label :state %><br />
+    <%= s.select(:id, State.all.collect {|s| [s.title, s.id]}) %>
+  </div>
+  <% end %>
   
   <%# The body of the request %>
   <div class="field">
     <%= f.label :body %><br />
-    <%= f.text_area :body %>
+    <%= f.text_area :body, :cols => 80 %>
   </div>
   <div class="actions">
     <%= f.submit %>

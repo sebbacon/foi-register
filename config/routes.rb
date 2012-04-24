@@ -1,5 +1,7 @@
 FoiRegister::Application.routes.draw do
   
+  resources :states
+
   get "redirection/front"
 
   root :to => 'redirection#front'
