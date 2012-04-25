@@ -2,5 +2,13 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-$(document).ready ->
-  $('#requestor_name').autocomplete({source: "/ajax/requestors"})
+$ ->
+  id = $ '#request_requestor_attributes_id'
+  email = $ '#request_requestor_attributes_email'
+  
+  $('#request_requestor_attributes_name').autocomplete({
+    source: "/ajax/requestors"
+  }).bind("autocompletefocus", (event, ui) ->
+    email.attr("disabled", true).val(ui.item.email)
+    id.val(ui.item.id)
+  )

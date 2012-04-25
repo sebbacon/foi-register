@@ -41,7 +41,14 @@ class RequestsController < ApplicationController
   # POST /requests.json
   def create
     request = params[:request]
+    requestor = request.delete :requestor_attributes
     @request = Request.new(request)
+    
+    if requestor[:id].nil?
+      @request.requestor = Requestor.new(requestor)
+    else
+      @request.requestor = Requestor.find(requestor[:id])
+    end
 
     respond_to do |format|
       if @request.save

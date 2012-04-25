@@ -23,6 +23,7 @@
        requestor_id and requestor_name %>
 
   <%= f.fields_for(:requestor) do |s| %>
+    <%= s.hidden_field :id %>
     <%= render :partial => "requestors/common_fields", :locals => {:requestor => s} %>
   <% end %>
 
