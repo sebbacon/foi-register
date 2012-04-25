@@ -1,8 +1,7 @@
 class AjaxController < ApplicationController
   def requestors
     if params[:term]
-      like = "%".concat(params[:term].concat("%"))
-      requestors = Requestor.where("name like ?", like)
+      requestors = Requestor.where("name like '%'||?||'%'", params[:term])
     else
       requestors = Requestor.all
     end
