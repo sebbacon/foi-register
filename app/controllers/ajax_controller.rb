@@ -5,7 +5,10 @@ class AjaxController < ApplicationController
     else
       requestors = Requestor.all
     end
-    list = requestors.map {|u| {:id => u.id, :label => u.name, :name => u.name}}
+    list = requestors.map {|requestor| {
+      :id => requestor.id, :label => requestor.name,
+      :name => requestor.name, :email => requestor.email, :notes => requestor.notes
+    }}
     render :json => list
   end
 end
