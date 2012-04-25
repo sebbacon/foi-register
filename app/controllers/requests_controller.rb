@@ -41,9 +41,7 @@ class RequestsController < ApplicationController
   # POST /requests.json
   def create
     request = params[:request]
-    #state = State.find(request.delete(:state))
     @request = Request.new(request)
-    # @request.state = state
 
     respond_to do |format|
       if @request.save
