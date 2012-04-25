@@ -21,11 +21,9 @@
        allow the requestor details to be filled in. When the form is
        submitted, the POSTed data will contain precisely one of
        requestor_id and requestor_name %>
+
   <%= f.fields_for(:requestor) do |s| %>
-    <div class="field">
-      <%= s.label :name %><br />
-      <%= s.text_field :name %>
-    </div>
+    <%= render :partial => "requestors/common_fields", :locals => {:requestor => s} %>
   <% end %>
 
   <%= f.fields_for(:state, :include_id => false) do |s| %>

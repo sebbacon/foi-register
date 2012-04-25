@@ -11,14 +11,7 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name, "Name of requestor" %><br />
-    <%= f.text_field :name, :size => 60 %>
-  </div>
-  <div class="field">
-    <%= f.label :email, "Email address" %><br />
-    <%= f.text_field :email, :size => 60 %>
-  </div>
+  <%= render :partial => "requestors/common_fields", :locals => {:requestor => f} %>
 
   <div class="field">
     <%= f.label :notes %><br />
