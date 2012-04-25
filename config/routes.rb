@@ -1,5 +1,7 @@
 FoiRegister::Application.routes.draw do
   
+  get "ajax/requestors"
+
   resources :states
 
   get "redirection/front"
