@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120424090008) do
+ActiveRecord::Schema.define(:version => 20120425095728) do
 
   create_table "request_states", :id => false, :force => true do |t|
     t.integer  "request_id"
@@ -34,10 +34,10 @@ ActiveRecord::Schema.define(:version => 20120424090008) do
     t.string   "title"
     t.string   "status"
     t.integer  "requestor_id"
-    t.datetime "created_at",                              :null => false
-    t.datetime "updated_at",                              :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.text     "body"
-    t.date     "date_received", :default => '2012-04-24', :null => false
+    t.date     "date_received"
   end
 
   add_index "requests", ["requestor_id"], :name => "index_requests_on_requestor_id"
