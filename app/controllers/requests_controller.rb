@@ -14,7 +14,6 @@ class RequestsController < ApplicationController
   # GET /requests/1.json
   def show
     @request = Request.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @request }
@@ -26,6 +25,7 @@ class RequestsController < ApplicationController
   def new
     @request = Request.new
     @states = State.all()
+    @request.requestor = Requestor.new
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @request }
