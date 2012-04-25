@@ -21,12 +21,12 @@
        allow the requestor details to be filled in. When the form is
        submitted, the POSTed data will contain precisely one of
        requestor_id and requestor_name %>
-  <%# XXXX Currently we just have a plain requestor_name field in this form. %>
-
-  <div class="field">
-    <%= label_tag :requestor_name, "Name of requestor" %><br />
-    <%= text_field_tag :requestor_name, "", :size => 60 %>
-  </div>
+  <%= f.fields_for(:requestor) do |s| %>
+    <div class="field">
+      <%= s.label :name %><br />
+      <%= s.text_field :name %>
+    </div>
+  <% end %>
 
   <%= f.fields_for(:state, :include_id => false) do |s| %>
     <div class="field">

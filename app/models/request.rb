@@ -3,7 +3,7 @@ class Request < ActiveRecord::Base
   validates_presence_of :title
   has_many :request_states
   has_many :states, :through => :request_states, :order => :created_at
-  #validates_presence_of :state
+  accepts_nested_attributes_for :requestor
 
   def state
     self.states.last || State.new
