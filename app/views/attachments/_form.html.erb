@@ -11,6 +11,16 @@
     </div>
   <% end %>
 
+  <% if !@attachment.file.url.nil? %>
+   File is currently at <%= link_to @attachment.file.url, @attachment.file.url %>
+  <% end %>
+
+  <div class="field">
+    <%= f.file_field :file %>
+    <%= f.hidden_field :file_cache %>
+  </div>
+
+
   <div class="actions">
     <%= f.submit %>
   </div>

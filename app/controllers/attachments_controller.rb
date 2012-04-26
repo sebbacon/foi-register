@@ -40,8 +40,8 @@ class AttachmentsController < ApplicationController
   # POST /attachments
   # POST /attachments.json
   def create
-    @attachment = Attachment.new(params[:attachment])
-
+    @attachment = Attachment.new
+    @attachment.file = params[:attachment][:file]
     respond_to do |format|
       if @attachment.save
         format.html { redirect_to @attachment, :notice => 'Attachment was successfully created.' }
