@@ -24,7 +24,7 @@
         <th>Requestor</th>
         <th>Title</th>
         <th>Status</th>
-        <th></th>
+        <th>Days until due</th>
         <th></th>
         <th></th>
         <th></th>
@@ -35,8 +35,10 @@
         <td><%= request.date_received.to_s(:short) %></td>   
         <td><%= request.requestor %></td>
         <td><%= link_to request.title, request %></td>
-        <td><span rel="tooltip" title="<%= request.state.description %>" class="state label <% if request.state.tag == 'new' %>label-warning<% end %>"><%= request.state.title %></td>
-        <td>15 days left</td>
+        <td><span rel="tooltip" title="<%= request.state.description %>" class="state label"><%= request.state.title %></td>
+        <td>
+	  <span class='badge <% if !request.days_until_due.nil? %><% if request.days_until_due < 5 %>badge-warning<% elsif request.days_until_due < 2 %>badge-important<% else %>badge-info<% end %><% end %>'> <% if !request.days_until_due.nil? %><%= request.days_until_due %><% else %>n/a<% end %></span>
+	</td>
         <td><%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_request_path(request) %></td>
         <td><%= link_to '<i class="icon-trash"></i>'.html_safe, request, :confirm => 'Are you sure?', :method => :delete %></td>
       </tr>

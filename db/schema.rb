@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120425095728) do
+ActiveRecord::Schema.define(:version => 20120426090457) do
 
   create_table "request_states", :id => false, :force => true do |t|
     t.integer  "request_id"
@@ -38,8 +38,10 @@ ActiveRecord::Schema.define(:version => 20120425095728) do
     t.datetime "updated_at",    :null => false
     t.text     "body"
     t.date     "date_received"
+    t.date     "due_date"
   end
 
+  add_index "requests", ["due_date"], :name => "index_requests_on_due_date"
   add_index "requests", ["requestor_id"], :name => "index_requests_on_requestor_id"
 
   create_table "states", :force => true do |t|

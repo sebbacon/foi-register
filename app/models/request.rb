@@ -9,7 +9,8 @@
 #  created_at    :datetime        not null
 #  updated_at    :datetime        not null
 #  body          :text
-#  date_received :date            default(Tue, 24 Apr 2012), not null
+#  date_received :date
+#  due_date      :date
 #
 
 class Request < ActiveRecord::Base
@@ -30,6 +31,12 @@ class Request < ActiveRecord::Base
   def state_attributes=(attributes)
     # process an attributes hash passed from nested form field
     self.state = State.find(attributes[:id])
+  end
+
+  def days_until_due
+    if !self.due_date.nil?
+      (self.due_date - Date.today).to_i
+    end
   end
 
 end
