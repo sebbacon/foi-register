@@ -10,7 +10,7 @@
 #  updated_at    :datetime        not null
 #  body          :text
 #  date_received :date
-#  due_date      :date
+#  due_date      :date            not null
 #
 
 class Request < ActiveRecord::Base
