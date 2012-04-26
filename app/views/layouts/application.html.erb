@@ -9,14 +9,16 @@
 <body>
 
 <div id="header">
- <ul>
-  <li><a href="/">Home</a></li>
-  <li><%= link_to "Add new request", "/requests/new" %></li>
-  <li><%= link_to "Show unassigned requests", "/requests/" %></li>
-  <li><%= link_to "Show overdue requests", "/requests/" %></li>
-  <li><%= link_to "Manage requests", "/requests/" %></li>
-  <li><%= link_to "Manage users", "/requestors/" %></li>
- </ul>
+ <div id="navcontainer">
+  <ul id="navlist">
+   <li id="active"><a href="/">Home</a></li>
+   <li><%= link_to "Add new request", "/requests/new" %></li>
+   <li><%= link_to "Show unassigned requests", "/requests/" %></li>
+   <li><%= link_to "Show overdue requests", "/requests/" %></li>
+   <li><%= link_to "Manage requests", "/requests/" %></li>
+   <li><%= link_to "Manage users", "/requestors/" %></li>
+  </ul>
+ </div>
 </div>
 
 
