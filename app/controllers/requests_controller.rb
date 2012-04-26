@@ -2,7 +2,7 @@ class RequestsController < ApplicationController
   # GET /requests
   # GET /requests.json
   def index
-    @requests = Request.all(:order => 'coalesce(date_received, created_at) DESC')
+    @requests = Request.paginate(:page => params[:page], :per_page => 5).order('coalesce(date_received, created_at) DESC')
     @badge = "all"
 
     respond_to do |format|
