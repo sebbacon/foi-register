@@ -10,7 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120426103842) do
+ActiveRecord::Schema.define(:version => 20120426121800) do
+
+  create_table "attachments", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "file"
+  end
 
   create_table "request_states", :id => false, :force => true do |t|
     t.integer  "request_id"
@@ -43,6 +49,14 @@ ActiveRecord::Schema.define(:version => 20120426103842) do
 
   add_index "requests", ["due_date"], :name => "index_requests_on_due_date"
   add_index "requests", ["requestor_id"], :name => "index_requests_on_requestor_id"
+
+  create_table "responses", :force => true do |t|
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.text     "private_part", :null => false
+    t.text     "public_part",  :null => false
+    t.integer  "request_id"
+  end
 
   create_table "states", :force => true do |t|
     t.string   "tag"

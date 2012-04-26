@@ -5,6 +5,14 @@ GIT
     annotate (2.4.1.beta1)
 
 GIT
+  remote: git://github.com/jnicklas/carrierwave.git
+  revision: b038398bbc0332f24674415b8ec8f296422ccf81
+  specs:
+    carrierwave (0.6.2)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+
+GIT
   remote: git://github.com/lostapathy/yaml_db.git
   revision: 98e9a5dca43e3fedd3268c76a73af40d1bdf1dfd
   specs:
@@ -139,6 +147,7 @@ PLATFORMS
 DEPENDENCIES
   annotate!
   bcrypt-ruby
+  carrierwave!
   coffee-rails (~> 3.2.1)
   jquery-rails
   json
