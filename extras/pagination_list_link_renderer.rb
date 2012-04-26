@@ -6,7 +6,7 @@ class PaginationListLinkRenderer < WillPaginate::ActionView::LinkRenderer
       unless page == current_page
         tag(:li, link(page, page, :rel => rel_value(page)))
       else
-        tag(:li, page, :class => "current")
+        tag(:li, tag(:a, page), :class => "active")
       end
     end
 
@@ -14,7 +14,7 @@ class PaginationListLinkRenderer < WillPaginate::ActionView::LinkRenderer
       if page
         tag(:li, link(text, page), :class => classname)
       else
-        tag(:li, text, :class => classname + ' disabled')
+        tag(:li, tag(:a, text), :class => classname + ' disabled')
       end
     end
 
