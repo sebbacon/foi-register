@@ -38,5 +38,16 @@ class Request < ActiveRecord::Base
       (self.due_date - Date.today).to_i
     end
   end
-
+  
+  def date_received_or_created
+    date_received || created_at.to_date
+  end
+  
+  class << self
+    # Get overdue requests, the most overdue first
+    def overdue
+      self.where("due_date <= date('now')").order("due_date ASC")
+    end
+  end
+  
 end

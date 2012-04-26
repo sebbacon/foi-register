@@ -2,10 +2,22 @@ class RequestsController < ApplicationController
   # GET /requests
   # GET /requests.json
   def index
-    @requests = Request.paginate(:page => params[:page], :per_page => 5)
+    @requests = Request.paginate(:page => params[:page], :per_page => 5).order('coalesce(date_received, created_at) DESC')
+    @badge = "all"
 
     respond_to do |format|
       format.html # index.html.erb
+      format.json { render :json => @requests }
+    end
+  end
+
+  # GET /requests/overdue
+  def overdue
+    @requests = Request.overdue
+    @badge = "overdue"
+
+    respond_to do |format|
+      format.html { render :action => "index" }
       format.json { render :json => @requests }
     end
   end
@@ -19,7 +31,7 @@ class RequestsController < ApplicationController
       format.json { render :json => @request }
     end
   end
-
+  
   # GET /requests/new
   # GET /requests/new.json
   def new
