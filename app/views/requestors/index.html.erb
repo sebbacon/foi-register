@@ -23,6 +23,9 @@
  <% end %>
  </tbody>
 </table>
+<div class="pagination pagination-centered">
+  <%= will_paginate(@requestors, :renderer => PaginationListLinkRenderer) %>
+</div>
 
 <br>
 

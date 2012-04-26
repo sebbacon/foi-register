@@ -2,7 +2,7 @@ class RequestorsController < ApplicationController
   # GET /requestors
   # GET /requestors.json
   def index
-    @requestors = Requestor.all
+    @requestors = Requestor.paginate(:page => params[:page], :per_page => 5).all
 
     respond_to do |format|
       format.html # index.html.erb
