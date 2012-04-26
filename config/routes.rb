@@ -8,7 +8,11 @@ FoiRegister::Application.routes.draw do
 
   root :to => 'redirection#front'
   
-  resources :requests
+  resources :requests do
+    collection do
+      get 'overdue'
+    end
+  end
   resources :requestors
   
   # The priority is based upon order of creation:
