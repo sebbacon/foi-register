@@ -46,3 +46,9 @@ gem 'less-rails-bootstrap'
 # For annotating models
 gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
 gem 'bcrypt-ruby'
+
+# For pagination
+gem 'will_paginate', '~> 3.0'
+
+# So we can dump and load plenty of sample data
+gem 'yaml_db', :git => 'git://github.com/lostapathy/yaml_db.git'
