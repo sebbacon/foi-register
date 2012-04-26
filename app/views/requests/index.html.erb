@@ -1,21 +1,18 @@
 
 <div class="row-fluid">
-<div class="span3"></div>
-<div class="page-header span9 offset3">
- <h1>Listing requests</h1>
-</div>
+ <div class="span12">
+  <h1>Listing requests</h1>
+ </div>
 </div>
 
  <div class="row-fluid">
-  <div class="span3">
+  <div class="span12">
 
-   <ul id="navlist" class="nav nav-pills nav-stacked">
+   <ul id="navlist" class="nav nav-pills">
     <li class="active"><a href="/requests/"><span class='badge badge-warning'>4</span> Show all requests</a></li>
     <li><a href="/requests/"><span class='badge badge-important'>9</span> Show overdue requests</a></li>
    </ul>
 
-  </div>
-  <div class="span9">
     <div class="row-fluid">
      <div class="span12">
       <%= link_to 'New Request', new_request_path, :class => "btn" %>
@@ -23,9 +20,11 @@
     </div>
     <table class="table-striped table-condensed table-bordered">
       <tr>
+        <th>Date received</th>
+        <th>Requestor</th>
         <th>Title</th>
         <th>Status</th>
-        <th>Requestor</th>
+        <th></th>
         <th></th>
         <th></th>
         <th></th>
@@ -33,10 +32,11 @@
 
     <% @requests.each do |request| %>
       <tr>
-        <td><%= request.title %></td>
-        <td><span rel="tooltip" title="<%= request.state.description %>" class="state label <% if request.state.tag == 'new' %>label-warning<% end %>"><%= request.state.title %></td>
+        <td><%= request.date_received.to_s(:short) %></td>   
         <td><%= request.requestor %></td>
-        <td><%= link_to 'Show', request %></td>
+        <td><%= link_to request.title, request %></td>
+        <td><span rel="tooltip" title="<%= request.state.description %>" class="state label <% if request.state.tag == 'new' %>label-warning<% end %>"><%= request.state.title %></td>
+        <td>15 days left</td>
         <td><%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_request_path(request) %></td>
         <td><%= link_to '<i class="icon-trash"></i>'.html_safe, request, :confirm => 'Are you sure?', :method => :delete %></td>
       </tr>
