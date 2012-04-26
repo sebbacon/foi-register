@@ -5,11 +5,12 @@
     <th></th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
 
 <% @attachments.each do |attachment| %>
   <tr>
-    <td><%= link_to 'Show', attachment %></td>
+    <td><%= link_to 'Download', attachment.file.url %></td>
     <td><%= link_to 'Edit', edit_attachment_path(attachment) %></td>
     <td><%= link_to 'Destroy', attachment, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
