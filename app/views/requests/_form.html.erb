@@ -22,10 +22,13 @@
        submitted, the POSTed data will contain precisely one of
        requestor_id and requestor_name %>
 
-  <%= f.fields_for(:requestor) do |s| %>
-    <%= s.hidden_field :id %>
-    <%= render :partial => "requestors/common_fields", :locals => {:requestor => s} %>
-  <% end %>
+  <fieldset>
+    <legend>Requestor</legend>
+    <%= f.fields_for(:requestor) do |s| %>
+      <%= s.hidden_field :id %>
+      <%= render :partial => "requestors/common_fields", :locals => {:requestor => s} %>
+    <% end %>
+  </fieldset>
 
   <%= f.fields_for(:state, :include_id => false) do |s| %>
     <div class="field">
