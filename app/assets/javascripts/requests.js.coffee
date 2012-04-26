@@ -18,3 +18,5 @@ $ ->
       id.val("")
       email.removeAttr("disabled").val("")
   )
+
+  $('span.state').tooltip()

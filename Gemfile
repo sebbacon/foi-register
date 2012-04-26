@@ -37,3 +37,12 @@ gem 'jquery-rails'
 
 # To use debugger
 gem 'ruby-debug'
+
+# For installing Bootstrap
+gem 'therubyracer'
+gem 'less-rails'
+gem 'less-rails-bootstrap'
+
+# For annotating models
+gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
+gem 'bcrypt-ruby'
