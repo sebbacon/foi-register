@@ -34,6 +34,7 @@ class RequestsController < ApplicationController
 
   # GET /requests/1/edit
   def edit
+    @requestor_editable = false
     @request = Request.find(params[:id])
   end
 
