@@ -32,7 +32,7 @@
 
     <% @requests.each do |request| %>
       <tr>
-        <td><%= request.date_received.to_s(:short) %></td>   
+        <td><%= (request.date_received || request.created_at).to_s(:short) %></td>   
         <td><%= request.requestor %></td>
         <td><%= link_to request.title, request %></td>
         <td><span rel="tooltip" title="<%= request.state.description %>" class="state label <% if request.state.tag == 'new' %>label-warning<% end %>"><%= request.state.title %></td>
