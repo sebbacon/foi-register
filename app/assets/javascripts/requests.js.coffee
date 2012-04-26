@@ -9,6 +9,12 @@ $ ->
   $('#request_requestor_attributes_name').autocomplete({
     source: "/ajax/requestors"
   }).bind("autocompletefocus", (event, ui) ->
+    email.val(ui.item.email)
+  ).bind("autocompleteselect", (event, ui) ->
     email.attr("disabled", true).val(ui.item.email)
     id.val(ui.item.id)
+  ).bind("change", (event) ->
+    if id.val()
+      id.val("")
+      email.removeAttr("disabled").val("")
   )
