@@ -6,8 +6,8 @@ class AjaxController < ApplicationController
       requestors = Requestor.all
     end
     list = requestors.map {|requestor| {
-      :id => requestor.id, :label => requestor.name,
-      :name => requestor.name, :email => requestor.email, :notes => requestor.notes
+      :id => requestor.id, :label => requestor.to_s, :value => requestor.name,
+      :name => requestor.name, :email => requestor.email
     }}
     render :json => list
   end
