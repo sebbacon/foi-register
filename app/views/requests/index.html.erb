@@ -1,27 +1,48 @@
-<h1>Listing requests</h1>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Status</th>
-    <th>Requestor</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="row-fluid">
+<div class="span3"></div>
+<div class="page-header span9 offset3">
+ <h1>Listing requests</h1>
+</div>
+</div>
 
-<% @requests.each do |request| %>
-  <tr>
-    <td><%= request.title %></td>
-    <td><%= request.status %></td>
-    <td><%= request.requestor %></td>
-    <td><%= link_to 'Show', request %></td>
-    <td><%= link_to 'Edit', edit_request_path(request) %></td>
-    <td><%= link_to 'Destroy', request, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+ <div class="row-fluid">
+  <div class="span3">
 
-<br />
+   <ul id="navlist" class="nav nav-pills nav-stacked">
+    <li class="active"><a href="/requests/"><span class='badge badge-warning'>4</span> Show all requests</a></li>
+    <li><a href="/requests/"><span class='badge badge-important'>9</span> Show overdue requests</a></li>
+   </ul>
 
-<%= link_to 'New Request', new_request_path %>
+  </div>
+  <div class="span9">
+    <div class="row-fluid">
+     <div class="span12">
+      <%= link_to 'New Request', new_request_path, :class => "btn" %>
+     </div>
+    </div>
+    <table class="table-striped table-condensed table-bordered">
+      <tr>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Requestor</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+
+    <% @requests.each do |request| %>
+      <tr>
+        <td><%= request.title %></td>
+        <td><span rel="tooltip" title="<%= request.state.description %>" class="state label <% if request.state.tag == 'new' %>label-warning<% end %>"><%= request.state.title %></td>
+        <td><%= request.requestor %></td>
+        <td><%= link_to 'Show', request %></td>
+        <td><%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_request_path(request) %></td>
+        <td><%= link_to '<i class="icon-trash"></i>'.html_safe, request, :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
+ </div>
+</div>
+

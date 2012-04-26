@@ -1,6 +1,8 @@
-<h1>Listing requestors</h1>
-
-<table>
+<div class="page-header span9 offset3">
+ <h1>Listing requestors</h1>
+</div>
+<table class="table-striped table-condensed table-bordered">
+ <thead>
   <tr>
     <th>Name</th>
     <th>Email</th>
@@ -8,16 +10,18 @@
     <th></th>
     <th></th>
   </tr>
-
-<% @requestors.each do |requestor| %>
+ </thead>
+ <tbody>
+ <% @requestors.each do |requestor| %>
   <tr>
     <td><%= requestor.name %></td>
     <td><%= requestor.email %></td>
     <td><%= link_to 'Show', requestor %></td>
-    <td><%= link_to 'Edit', edit_requestor_path(requestor) %></td>
-    <td><%= link_to 'Destroy', requestor, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_requestor_path(requestor) %></td>
+    <td><%= link_to '<i class="icon-trash"></i>'.html_safe, requestor, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
-<% end %>
+ <% end %>
+ </tbody>
 </table>
 
 <br />

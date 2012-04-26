@@ -7,23 +7,28 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+	  <a class="brand">Foi Manager</a>
+	  <ul class="nav">
+	    <li class="active">
+	      <a href="/">Home</a>
+	    </li>
+            <li><%= link_to "Manage requests", "/requests/" %></li>
+            <li><%= link_to "Manage users", "/requestors/" %></li>
 
-<div id="header">
- <div id="navcontainer">
-  <ul id="navlist">
-   <li id="active"><a href="/">Home</a></li>
-   <li><%= link_to "Add new request", "/requests/new" %></li>
-   <li><%= link_to "Show unassigned requests", "/requests/" %></li>
-   <li><%= link_to "Show overdue requests", "/requests/" %></li>
-   <li><%= link_to "Manage requests", "/requests/" %></li>
-   <li><%= link_to "Manage users", "/requestors/" %></li>
-  </ul>
- </div>
+	  </ul>    
+
+	  <form class="navbar-search pull-left" action="">
+            <input type="text" class="search-query span2" placeholder="Search">
+          </form> 
+        </div>
+      </div>
+    </div>
+
+<div class="container">
+   <%= yield %>
 </div>
-
-
-
-<%= yield %>
-
 </body>
 </html>

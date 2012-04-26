@@ -37,3 +37,6 @@ gem 'jquery-rails'
 
 # To use debugger
 gem 'ruby-debug'
+gem 'therubyracer'
+gem 'less-rails'
+gem 'less-rails-bootstrap'

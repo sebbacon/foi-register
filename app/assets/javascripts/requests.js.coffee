@@ -12,3 +12,5 @@ $ ->
     email.attr("disabled", true).val(ui.item.email)
     id.val(ui.item.id)
   )
+
+  $('span.state').tooltip()
