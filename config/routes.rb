@@ -1,5 +1,9 @@
 FoiRegister::Application.routes.draw do
   
+  resources :attachments
+
+  resources :responses
+
   get "ajax/requestors"
 
   resources :states
