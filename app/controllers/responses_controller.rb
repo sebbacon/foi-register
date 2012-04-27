@@ -2,7 +2,8 @@ class ResponsesController < ApplicationController
   # GET /responses
   # GET /responses.json
   def index
-    @responses = Response.all
+    @request = Request.find(params[:request_id])
+    @responses = @request.responses
 
     respond_to do |format|
       format.html # index.html.erb
@@ -46,7 +47,7 @@ class ResponsesController < ApplicationController
     
     respond_to do |format|
       if @response.save
-        format.html { redirect_to @response, :notice => 'Response was successfully created.' }
+        format.html { redirect_to [request, @response], :notice => 'Response was successfully created.' }
         format.json { render :json => @response, :status => :created, :location => @response }
       else
         format.html { render :action => "new" }
