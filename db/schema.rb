@@ -10,15 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120427091055) do
+ActiveRecord::Schema.define(:version => 20120427121049) do
 
   create_table "attachments", :force => true do |t|
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-    t.string   "file"
-    t.integer  "response_id"
-    t.text     "content_type"
-    t.integer  "size"
+    t.string   "file",         :null => false
+    t.integer  "response_id",  :null => false
+    t.text     "content_type", :null => false
+    t.integer  "size",         :null => false
   end
 
   add_index "attachments", ["response_id"], :name => "index_attachments_on_response_id"
