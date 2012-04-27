@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120426121800) do
+ActiveRecord::Schema.define(:version => 20120426124454) do
 
   create_table "attachments", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(:version => 20120426121800) do
     t.datetime "updated_at",   :null => false
     t.text     "private_part", :null => false
     t.text     "public_part",  :null => false
-    t.integer  "request_id"
+    t.integer  "request_id",   :null => false
   end
 
   create_table "states", :force => true do |t|
