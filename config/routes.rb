@@ -16,6 +16,9 @@ FoiRegister::Application.routes.draw do
     collection do
       get 'overdue'
     end
+    member do
+      get 'new_response'
+    end
   end
   resources :requestors
   
