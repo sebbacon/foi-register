@@ -11,7 +11,8 @@
     </div>
   <% end %>
 
-  <%=  %>
+  <%= render :partial => "responses/reply_fields", :locals => {:response => f} %>
+
   <div class="actions">
     <div class="field">
       <%= f.label :private_part %>

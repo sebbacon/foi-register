@@ -1,20 +1,54 @@
 <p id="notice"><%= notice %></p>
+<div class="page-header">
+  <h1><%= @request.title %></h1>
+  <span rel="tooltip" title="<%= @request.state.description %>" class="state label"><%= @request.state.title %></span>
 
-<p>
-  <b>Title:</b>
-  <%= @request.title %>
-</p>
+</div>
+<div class="request well">
+  <div class="correspondence-header">
+   From: <%= @request.requestor %><br>
+   To: Brighton and Hove<br>
+   Sent: <%= @request.date_received_or_created.to_s(:short) %><br>
+   Subject: <%= @request.title %>
+  </div>
+  <hr>
+  <div class="correspondence-body">
+   <%= @request.body %>
+  </div>
+</div>
+<% for response in @request.responses %>
+ <div class="response well">
+  <div class="correspondence-header">
+   From: Brighton and Hove<br>
+   To: @request.requestor<br>
+   Sent: <%= response.created_at.to_s(:short) %>
+  </div>
+  <hr>
+  <div class="correspondence-body">
+    <span class="label">Public response:</span><br>
+    <%= response.public_part %><br>
+    <% for attachment in response.attachments %>
+     <% if attachment.file? %>
+      <%= link_to attachment.file.filename, attachment.file.url %> (<%= attachment.content_type %>, <%= attachment.size %> bytes)<br>
+     <% end %>
+    <% end %>
+  </div>
+  <blockquote>
+   <div class="alert alert-error private">
+    <span class="label">Private notes (requestor cannot see):</span><br>
+    <em><%= response.private_part %></em>
+   </div>
+  </blockquote>
+ </div>
+<% end %>
 
-<p>
-  <b>State:</b>
-  <%= @request.state.title %> (history: <%= @request.states.collect{|state| [state.title, state.created_at]} %>)
-</p>
-
-<p>
-  <b>Requestor:</b>
-  <%= @request.requestor %>
-</p>
-
+Reply:
+<%= form_for([@request, Response.new]) do |f| %>
+  <%= render :partial => "responses/reply_fields", :locals => {:response => f} %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
 
 <%= link_to 'Edit', edit_request_path(@request) %> |
 <%= link_to 'Back', requests_path %>

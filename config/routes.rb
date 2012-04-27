@@ -18,6 +18,7 @@ FoiRegister::Application.routes.draw do
     member do
       get 'new_response'
     end
+    resources :responses
   end
   resources :requestors
   
