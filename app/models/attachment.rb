@@ -9,5 +9,15 @@
 #
 
 class Attachment < ActiveRecord::Base
-  mount_uploader :file, FileUploader
+  mount_uploader :file, AttachmentUploader
+  belongs_to :response
+  before_save :update_metadata
+  
+  private
+  def update_metadata
+    if file.present? && file_changed?
+      self.content_type = file.file.content_type
+      self.size = file.file.size
+    end
+  end
 end
