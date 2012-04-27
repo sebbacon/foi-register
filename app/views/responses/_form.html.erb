@@ -14,16 +14,6 @@
   <%= render :partial => "responses/reply_fields", :locals => {:response => f} %>
 
   <div class="actions">
-    <div class="field">
-      <%= f.label :private_part %>
-      <%= f.text_area :private_part, :cols => 80 %>
-    </div>
-
-    <div class="field">
-      <%= f.label :public_part %>
-      <%= f.text_area :public_part, :cols => 80 %>
-    </div>
-    
     <%= f.submit %>
   </div>
 <% end %>
