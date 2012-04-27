@@ -2,8 +2,6 @@ FoiRegister::Application.routes.draw do
   
   resources :attachments
 
-  resources :responses
-
   get "ajax/requestors"
 
   resources :states
@@ -13,6 +11,7 @@ FoiRegister::Application.routes.draw do
   root :to => 'redirection#front'
   
   resources :requests do
+    resources :responses
     collection do
       get 'overdue'
     end
