@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(:version => 20120427091055) do
     t.datetime "updated_at",   :null => false
     t.text     "private_part", :null => false
     t.text     "public_part",  :null => false
-    t.integer  "request_id"
+    t.integer  "request_id",   :null => false
   end
 
   create_table "states", :force => true do |t|

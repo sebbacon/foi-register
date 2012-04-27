@@ -43,6 +43,7 @@ class ResponsesController < ApplicationController
     request = Request.find(params[:request_id])
     @response = Response.new(params[:response])
     @response.request = request
+    
     respond_to do |format|
       if @response.save
         format.html { redirect_to @response, :notice => 'Response was successfully created.' }

@@ -1,4 +1,4 @@
-<%= form_for([@request, @response]) do |f| %>
+<%= form_for([@response.request, @response]) do |f| %>
   <% if @response.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@response.errors.count, "error") %> prohibited this response from being saved:</h2>
