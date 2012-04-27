@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120427121049) do
+ActiveRecord::Schema.define(:version => 20120427145025) do
 
   create_table "attachments", :force => true do |t|
     t.datetime "created_at",   :null => false
@@ -22,6 +22,11 @@ ActiveRecord::Schema.define(:version => 20120427121049) do
   end
 
   add_index "attachments", ["response_id"], :name => "index_attachments_on_response_id"
+
+  create_table "lgcs_terms", :force => true do |t|
+    t.string  "name",            :null => false
+    t.integer "broader_term_id"
+  end
 
   create_table "request_states", :id => false, :force => true do |t|
     t.integer  "request_id"

@@ -1,3 +1,6 @@
+require "net/http"
+require "rexml/document"
+
 namespace :bootstrap do
   
   desc "Add the default states"
@@ -21,6 +24,34 @@ namespace :bootstrap do
     end
   end
   
+  task :lgcs_terms => :environment do
+    def each_lgcs_item
+      Rails.logger.info("Loading LGCS XML data...")
+      lgcs_xml = Net::HTTP.get_response("www.esd.org.uk", "/standards/lgcs/2.01/lgcs.xml").body
+      Rails.logger.info("Loaded")
+      
+      REXML::Document.new(lgcs_xml).elements.each("/ControlledList/Item") do |item|
+        id = item.attributes["Id"].to_i
+        name = item.elements["Name"].text
+        notes = item.elements["ScopeNotes"].text
+        broader_items = item.get_elements("BroaderItem")
+        if broader_items.size > 0
+          if broader_items.size > 1
+            raise "Item %d (%s) has >1 BroaderItem" % [id, name]
+          end
+          broader_item_id = broader_items[0].attributes["Id"].to_i
+          
+          yield :id => id, :name => name, :broader_term_id => broader_item_id
+        end
+      end
+    end
+    
+    each_lgcs_item do |item|
+      Rails.logger.info "Creating LGCS term '#{item[:name]}'"
+      LGCSTerm.create(item)
+    end
+  end
+  
   desc "Run all bootstrapping tasks"
-  task :all => [:default_states]
+  task :all => [:default_states, :lgcs_terms]
 end
