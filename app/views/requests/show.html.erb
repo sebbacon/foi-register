@@ -2,18 +2,36 @@
 
 <p>
   <b>Title:</b>
-  <%= @request.title %>
-</p>
-
-<p>
-  <b>State:</b>
-  <%= @request.state.title %> (history: <%= @request.states.collect{|state| [state.title, state.created_at]} %>)
+  <%= @request.title %> <span rel="tooltip" title="<%= @request.state.description %>" class="state label"><%= @request.state.title %>
 </p>
 
 <p>
   <b>Requestor:</b>
   <%= @request.requestor %>
 </p>
+
+<blockquote>
+ <%= @request.body %>
+</blockquote>
+
+<hr>
+
+<% for response in @request.responses %>
+<blockquote>
+ <%= response.public_part %>
+ <em><%= response.private_part %></em>
+</blockquote>
+<% end %>
+
+Reply:
+<%= form_for(@request) do |f| %>
+  <%= f.fields_for(:responses, Response.new) do |s| %>
+    <%= render :partial => "responses/reply_fields", :locals => {:response => s} %>
+  <% end %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
 
 
 <%= link_to 'Edit', edit_request_path(@request) %> |
