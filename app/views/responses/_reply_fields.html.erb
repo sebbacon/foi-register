@@ -36,6 +36,16 @@
     <%= response.label :private_part %>
     <%= response.text_area :private_part  %>
   </div>
+  <div>
+  <%= response.fields_for(:request, @request) do |s| %>
+   <%= s.fields_for(:state, :include_id => false) do |t| %>
+    <div class="field">
+      <%= t.label :state %>
+      <%= t.select(:id, State.all.collect {|t| [t.title, t.id]}) %>
+    </div>
+   <% end %>
+  <% end %>
+  </div>
  </div>
 </div>
 

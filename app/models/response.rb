@@ -14,4 +14,12 @@ class Response < ActiveRecord::Base
   belongs_to :request
   has_many :attachments
   accepts_nested_attributes_for :attachments
+  accepts_nested_attributes_for :request
+
+  def request_attributes=(attributes)
+    # process an attributes hash passed from nested form field
+    request = Request.find(attributes[:id])
+    request.state = State.find(attributes[:state_attributes][:id])
+  end
+
 end
