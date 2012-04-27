@@ -60,7 +60,16 @@ class ResponsesController < ApplicationController
   # PUT /responses/1.json
   def update
     @response = Response.find(params[:id])
-
+    attachments_attributes = params[:response][:attachments_attributes]
+    if !attachments_attributes.nil?
+      attachments_attributes.each do |k,v|
+        if v["remove_file"] == "1"
+          Attachment.delete(v["id"])
+          attachments_attributes.delete(k)
+        end
+      end
+      params[:response][:attachments_attributes] = attachments_attributes
+    end
     respond_to do |format|
       if @response.update_attributes(params[:response])
         format.html { redirect_to @response.request, :notice => 'Response was successfully updated.' }

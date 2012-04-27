@@ -12,6 +12,7 @@
        <div class="field">
          <%= s.label "Change attachment %d:" % [i+1] %>
          <%= s.file_field :file %>
+         <%= s.check_box :remove_file %>
          <%= s.hidden_field :file_cache %>
        </div>
        <% end %>
