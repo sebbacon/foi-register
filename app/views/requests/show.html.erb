@@ -29,7 +29,7 @@
     <%= response.public_part %><br>
     <% for attachment in response.attachments %>
      <% if attachment.file? %>
-      <%= link_to attachment.file.filename, attachment.file.url %> (<%= attachment.content_type %>, <%= attachment.size %> bytes)
+      <%= link_to attachment.file.filename, attachment.file.url %> (<%= attachment.content_type %>, <%= attachment.size %> bytes)<br>
      <% end %>
     <% end %>
   </div>

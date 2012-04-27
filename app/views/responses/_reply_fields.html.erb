@@ -3,14 +3,17 @@
   <div class="field alert alert-success public-response">
     <%= response.label :public_part %>
     <%= response.text_area :public_part  %>
-    <%= response.fields_for(:attachments, Attachment.new) do |s| %>
-     <div class="field">
-       <%= s.label "Upload attachment:" %>
-       <%= s.file_field :file %>
-       <%= s.hidden_field :file_cache %>
-     </div>
-    <% end %>
+    <% for i in 1..4 %>
+      <%= response.fields_for(:attachments, Attachment.new) do |s| %>
+       <div class="field">
+         <%= s.label "Upload attachment %d:" % [i] %>
+         <%= s.file_field :file %>
+         <%= s.hidden_field :file_cache %>
+       </div>
+       <% end %>
+     <% end %>
   </div>
+
  </div>
  <div class="span6">
   <div class="field alert alert-error private-response">
