@@ -4,42 +4,11 @@
   <span rel="tooltip" title="<%= @request.state.description %>" class="state label"><%= @request.state.title %></span>
 
 </div>
-<div class="request well">
-  <div class="correspondence-header">
-   From: <%= @request.requestor %><br>
-   To: Brighton and Hove<br>
-   Sent: <%= @request.date_received_or_created.to_s(:short) %><br>
-   Subject: <%= @request.title %>
-  </div>
-  <hr>
-  <div class="correspondence-body">
-   <%= @request.body %>
-  </div>
-</div>
+
+<%= render :partial => "requests/show_request_part", :locals => {:r => @request} %>
+
 <% for response in @request.responses %>
- <div class="response well">
-  <div class="correspondence-header">
-   From: Brighton and Hove<br>
-   To: @request.requestor<br>
-   Sent: <%= response.created_at.to_s(:short) %>
-  </div>
-  <hr>
-  <div class="correspondence-body">
-    <span class="label">Public response:</span><br>
-    <%= response.public_part %><br>
-    <% for attachment in response.attachments %>
-     <% if attachment.file? %>
-      <%= link_to attachment.file.filename, attachment.file.url %> (<%= attachment.content_type %>, <%= attachment.size %> bytes)<br>
-     <% end %>
-    <% end %>
-  </div>
-  <blockquote>
-   <div class="alert alert-error private">
-    <span class="label">Private notes (requestor cannot see):</span><br>
-    <em><%= response.private_part %></em>
-   </div>
-  </blockquote>
- </div>
+ <%= render :partial => "responses/show_response_part", :locals => {:r => response} %>
 <% end %>
 
 Reply:

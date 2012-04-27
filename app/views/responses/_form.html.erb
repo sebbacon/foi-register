@@ -11,7 +11,13 @@
     </div>
   <% end %>
 
-  <%= render :partial => "responses/reply_fields", :locals => {:response => f} %>
+<%= render :partial => "requests/show_request_part", :locals => {:r => @response.request} %>
+
+<% for response in @response.request.responses[0..-2] %>
+ <%= render :partial => "responses/show_response_part", :locals => {:r => response} %>
+<% end %>
+ 
+ <%= render :partial => "responses/reply_fields", :locals => {:response => f} %>
 
   <div class="actions">
     <%= f.submit %>
