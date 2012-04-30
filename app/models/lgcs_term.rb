@@ -5,6 +5,7 @@
 #  id              :integer         not null, primary key
 #  name            :string(255)     not null
 #  broader_term_id :integer
+#  notes           :text
 #
 
 # A term of the LGCS taxonomy, used for classifying the subject of requests
