@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: lgcs_terms
+#
+#  id              :integer         not null, primary key
+#  name            :string(255)     not null
+#  broader_term_id :integer
+#
+
 # A term of the LGCS taxonomy, used for classifying the subject of requests
 
 class LGCSTerm < ActiveRecord::Base
