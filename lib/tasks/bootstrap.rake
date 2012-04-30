@@ -41,7 +41,9 @@ namespace :bootstrap do
           end
           broader_item_id = broader_items[0].attributes["Id"].to_i
           
-          yield :id => id, :name => name, :broader_term_id => broader_item_id
+          yield :id => id, :name => name, :notes => notes, :broader_term_id => broader_item_id
+        else
+          yield :id => id, :name => name, :notes => notes
         end
       end
     end
