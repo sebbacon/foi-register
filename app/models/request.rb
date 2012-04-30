@@ -11,10 +11,12 @@
 #  body          :text
 #  date_received :date
 #  due_date      :date            not null
+#  lgcs_term_id  :integer
 #
 
 class Request < ActiveRecord::Base
   belongs_to :requestor
+  belongs_to :lgcs_term
   validates_presence_of :title
   has_many :request_states
   has_many :responses

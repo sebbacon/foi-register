@@ -2,4 +2,5 @@
 
 class LGCSTerm < ActiveRecord::Base
   belongs_to :broader_term, :class_name => 'LGCSTerm'
+  has_many :requests
 end
