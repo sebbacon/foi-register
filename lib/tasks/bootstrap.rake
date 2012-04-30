@@ -49,8 +49,10 @@ namespace :bootstrap do
     end
     
     each_lgcs_item do |item|
-      Rails.logger.info "Creating LGCS term '#{item[:name]}'"
-      LGCSTerm.create(item)
+      Rails.logger.info "Creating LGCS term '#{item[:name]}' with id #{item[:id]}"
+      term = LGCSTerm.new(item)
+      term.id = item[:id]
+      term.save!
     end
   end
   
