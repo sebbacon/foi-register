@@ -6,7 +6,7 @@
   </div>
   <hr>
   <div class="correspondence-body">
-   <% if is_admin? %>
+   <% if is_admin_view? %>
     <span class="label">Public part:</span><br>
    <% end %>
     <%= r.public_part %><br>
@@ -16,7 +16,7 @@
      <% end %>
     <% end %>
   </div>
-  <% if is_admin? %>
+  <% if is_admin_view? %>
   <blockquote>
    <div class="alert alert-error private">
     <span class="label">Private notes (requestor cannot see):</span><br>
