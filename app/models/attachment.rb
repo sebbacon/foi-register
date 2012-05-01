@@ -10,6 +10,7 @@
 #  size                     :integer         not null
 #  request_or_response_id   :integer
 #  request_or_response_type :string(255)
+#  filename                 :string(255)
 #
 
 class Attachment < ActiveRecord::Base
