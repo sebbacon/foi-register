@@ -4,7 +4,14 @@ class RequestsController < ApplicationController
   # GET /requests
   # GET /requests.json
   def index
-    @requests = Request.paginate(:page => params[:page], :per_page => 5).order('coalesce(date_received, created_at) DESC')
+    if is_admin_view?
+      @requests = Request.paginate(:page => params[:page], :per_page => 5) \
+        .order('coalesce(date_received, created_at) DESC')
+    else
+      @requests = Request.paginate(:page => params[:page], :per_page => 5) \
+        .where(['is_published = ?', true]) \
+        .order('coalesce(date_received, created_at) DESC')
+    end
     @badge = "all"
     
     if self.is_admin_view?
@@ -19,24 +26,26 @@ class RequestsController < ApplicationController
 
   end
 
-  # GET /requests/overdue
-  def overdue
-    @requests = Request.paginate(:page => params[:page], :per_page => 5).overdue
-    @badge = "overdue"
-
-    respond_to do |format|
-      format.html { render :action => "index" }
-      format.json { render :json => @requests }
-    end
-  end
-
   # GET /requests/1
   # GET /requests/1.json
   def show
     @request = Request.find(params[:id])
+    raise ActiveRecord::RecordNotFound if !is_admin_view? && !@request.is_published
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @request }
+    end
+  end
+  
+  # GET /requests/overdue
+  def overdue
+    @requests = Request.paginate(:page => params[:page], :per_page => 5).overdue
+    @badge = "overdue"
+    
+    respond_to do |format|
+      format.html { render :action => "index" }
+      format.json { render :json => @requests }
     end
   end
   
