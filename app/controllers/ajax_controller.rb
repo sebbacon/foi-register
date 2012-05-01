@@ -22,7 +22,7 @@ class AjaxController < ApplicationController
     end
     list = lgcs_terms.map do |lgcs_term|
       {
-        :id => lgcs_term.id, :label => lgcs_term.to_s, :value => lgcs_term.name,
+        :id => lgcs_term.id, :value => lgcs_term.to_s,
         :name => lgcs_term.name, :notes => lgcs_term.notes
       }
     end
