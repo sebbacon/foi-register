@@ -6,14 +6,17 @@
   </div>
   <hr>
   <div class="correspondence-body">
+   <% if is_admin_view? %>
     <span class="label">Public part:</span><br>
+   <% end %>
     <%= r.public_part %><br>
     <% for attachment in r.attachments %>
      <% if attachment.file? %>
-      <%= link_to attachment.file.filename, attachment.file.url %> (<%= attachment.content_type %>, <%= attachment.size %> bytes)<br>
+      <%= link_to ('<i class="icon-download"></i> ' + attachment.filename).html_safe, attachment.file.url %> (<%= number_to_human_size(attachment.size, :precision => 2) %>)<br>
      <% end %>
     <% end %>
   </div>
+  <% if is_admin_view? %>
   <blockquote>
    <div class="alert alert-error private">
     <span class="label">Private notes (requestor cannot see):</span><br>
@@ -21,4 +24,5 @@
    </div>
   </blockquote>
   <%= link_to "Edit", url_for(:action => :edit, :request_id => r.request.id, :id => r.id, :controller => :responses) %>
+  <% end %>
  </div>

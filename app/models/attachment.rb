@@ -22,6 +22,7 @@ class Attachment < ActiveRecord::Base
     if file.present? && file_changed?
       self.content_type = file.file.content_type
       self.size = file.file.size
+      self.filename = file.file.filename
     end
   end
 end

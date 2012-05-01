@@ -1,0 +1,30 @@
+
+<div class="row-fluid">
+ <div class="span12">
+  <h1>FOI requests to Brighton and Hove Council</h1>
+ </div>
+</div>
+
+ <div class="row-fluid">
+  <div class="span12">
+
+    <table class="table-striped table-condensed table-bordered">
+      <tr>
+        <th>Date received</th>
+        <th>Title</th>
+      </tr>
+
+    <% @requests.each do |request| %>
+      <tr>
+        <td><%= request.date_received_or_created.to_s(:short) %></td>   
+        <td><%= link_to request.title, request %> <span rel="tooltip" title="<%= request.state.description %>" class="state label"><%= request.state.title %></td>
+      </tr>
+    <% end %>
+    </table>
+    <div class="pagination pagination-centered">
+      <%= will_paginate(@requests, :renderer => PaginationListLinkRenderer) %>
+    </div>
+  </div>
+ </div>
+</div>
+

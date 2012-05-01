@@ -16,7 +16,7 @@
 <% for response in @request.responses %>
  <%= render :partial => "responses/show_response_part", :locals => {:r => response} %>
 <% end %>
-
+<% if is_admin_view? %>
 Reply:
 <%= form_for([@request, Response.new]) do |f| %>
   <%= render :partial => "responses/reply_fields", :locals => {:response => f} %>
@@ -26,4 +26,5 @@ Reply:
 <% end %>
 
 <%= link_to 'Edit', edit_request_path(@request) %> |
+<% end %>
 <%= link_to 'Back', requests_path %>

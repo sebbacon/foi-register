@@ -10,16 +10,18 @@ FoiRegister::Application.routes.draw do
   get "redirection/front"
 
   root :to => 'redirection#front'
-  
-  resources :requests do
-    resources :responses
-    collection do
-      get 'overdue'
+  scope "(:is_admin)" do 
+    resources :requests do
+      resources :responses
+      collection do
+        get 'overdue'
+      end
+      member do
+        get 'new_response'
+      end
+      resources :responses
     end
-    member do
-      get 'new_response'
-    end
-    resources :responses
+    resources :requestors
   end
   resources :requestors
   

@@ -1,4 +1,6 @@
 class ResponsesController < ApplicationController
+  skip_before_filter :require_login, :only => [:index, :show]
+
   # GET /responses
   # GET /responses.json
   def index

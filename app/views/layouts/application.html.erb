@@ -7,31 +7,32 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="navbar">
-    <div class="navbar-inner">
-      <div class="container">
-        <a class="brand">Foi Manager</a>
-        <ul class="nav">
-          <li class="active"><a href="/">Home</a></li>
-          <li><%= link_to "Manage requests", "/requests/" %></li>
-          <li><%= link_to "Manage users", "/requestors/" %></li>
-        </ul>
+  <% if is_admin_view? %>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand">Foi Manager</a>
+          <ul class="nav">
+            <li class="active"><a href="/">Home</a></li>
+            <li><%= link_to "Manage requests", "/requests/" %></li>
+            <li><%= link_to "Manage users", "/requestors/" %></li>
+          </ul>
         
-        <form class="navbar-search pull-left" action="">
-          <input type="text" class="search-query span2" placeholder="Search">
-        </form>
+          <form class="navbar-search pull-left" action="">
+            <input type="text" class="search-query span2" placeholder="Search">
+          </form>
         
-        <ul class="nav pull-right">
-          <% if controller.current_staff_member.nil? %>
-            <li><%= link_to "Log in", "/sessions/new" %></li>
-          <% else %>
-            <li><%= link_to "Log out", "/sessions/logout" %></li>
-          <% end %>
-        </ul>
+          <ul class="nav pull-right">
+            <% if controller.current_staff_member.nil? %>
+              <li><%= link_to "Log in", "/sessions/new" %></li>
+            <% else %>
+              <li><%= link_to "Log out", "/sessions/logout" %></li>
+            <% end %>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
-
+  <% end %>
   <div class="container">
     <%= yield %>
   </div>

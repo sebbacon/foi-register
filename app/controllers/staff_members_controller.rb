@@ -1,10 +1,6 @@
 class StaffMembersController < ApplicationController
   http_basic_authenticate_with :name => "admin", :password => "BYEAjfCVCiyF"
-  
-  def initialize(*params)
-    super(*params)
-    @does_not_require_login = true
-  end
+  skip_before_filter :require_login # because we protect with Basic HTTP Auth instead
   
   def new
     @staff_member = StaffMember.new
