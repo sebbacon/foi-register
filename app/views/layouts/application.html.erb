@@ -22,7 +22,11 @@
         </form>
         
         <ul class="nav pull-right">
-          <li><%= link_to "Log out", "/sessions/logout" %></li>
+          <% if controller.current_staff_member.nil? %>
+            <li><%= link_to "Log in", "/sessions/new" %></li>
+          <% else %>
+            <li><%= link_to "Log out", "/sessions/logout" %></li>
+          <% end %>
         </ul>
       </div>
     </div>
