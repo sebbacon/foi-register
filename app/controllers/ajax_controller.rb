@@ -5,10 +5,12 @@ class AjaxController < ApplicationController
     else
       requestors = Requestor.all
     end
-    list = requestors.map {|requestor| {
-      :id => requestor.id, :label => requestor.to_s, :value => requestor.name,
-      :name => requestor.name, :email => requestor.email
-    }}
+    list = requestors.map do |requestor|
+      {
+        :id => requestor.id, :label => requestor.to_s, :value => requestor.name,
+        :name => requestor.name, :email => requestor.email
+      }
+    end
     render :json => list
   end
 
@@ -18,10 +20,12 @@ class AjaxController < ApplicationController
     else
       lgcs_terms = LGCSTerm.all
     end
-    list = lgcs_terms.map {|lgcs_term| {
-      :id => lgcs_term.id, :label => lgcs_term.to_s, :value => lgcs_term.name,
-      :name => lgcs_term.name, :notes => lgcs_term.notes
-    }}
+    list = lgcs_terms.map do |lgcs_term|
+      {
+        :id => lgcs_term.id, :label => lgcs_term.to_s, :value => lgcs_term.name,
+        :name => lgcs_term.name, :notes => lgcs_term.notes
+      }
+    end
     render :json => list
   end
 end
