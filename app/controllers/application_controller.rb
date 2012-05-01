@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_filter :require_login
   before_filter :require_login_based_on_url
   before_filter :set_is_admin_path
 
@@ -23,6 +24,16 @@ class ApplicationController < ActionController::Base
     self.default_url_options[:is_admin] = self.is_admin_view? ? "admin" : nil
   end
 
+  # This filter requires login. We explicitly skip this one
+  # for public-facing pages using skip_before_filter.
+  def require_login
+    if current_staff_member.nil?
+      redirect_to "/sessions/new"
+    end
+  end
+  
+  # This filter should never be skipped, and requires login
+  # only for pages that start with /admin/.
   def require_login_based_on_url
     if !params[:is_admin].nil? && current_staff_member.nil?
       redirect_to "/sessions/new"
