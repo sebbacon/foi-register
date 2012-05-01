@@ -70,6 +70,13 @@ ActiveRecord::Schema.define(:version => 20120501134644) do
     t.integer  "request_id",   :null => false
   end
 
+  create_table "staff_members", :force => true do |t|
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
   create_table "states", :force => true do |t|
     t.string   "tag"
     t.string   "title"
