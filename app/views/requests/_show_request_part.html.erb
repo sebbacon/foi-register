@@ -1,6 +1,10 @@
 <div class="request well">
   <div class="correspondence-header">
-   From: <%= r.requestor %><br>
+   <% if is_admin_view? %>
+    From: <%= r.requestor %><br>
+   <% else %>
+    From: <%= r.requestor.name %><br>
+   <% end %>
    To: Brighton and Hove<br>
    Sent: <%= r.date_received_or_created.to_s(:short) %><br>
    Subject: <%= r.title %>
