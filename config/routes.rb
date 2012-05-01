@@ -23,6 +23,13 @@ FoiRegister::Application.routes.draw do
   end
   resources :requestors
   
+  resources :staff_members
+  resources :sessions do
+    collection do
+      get "logout"
+    end
+  end
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
