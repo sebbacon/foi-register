@@ -9,4 +9,10 @@
   <div class="correspondence-body">
    <%= r.body %>
   </div>
+  <% for attachment in @request.attachments %>
+   <% if attachment.file? %>
+    <%= link_to attachment.file.filename, attachment.file.url %> (<%= attachment.content_type %>, <%= attachment.size %> bytes)<br>
+   <% end %>
+  <% end %>
+
 </div>
