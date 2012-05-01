@@ -2,7 +2,7 @@
   <div class="correspondence-header">
    <% if is_admin_view? %>
     From: <%= r.requestor %><br>
-   <% else %>
+   <% elsif r.is_requestor_name_visible %>
     From: <%= r.requestor.name %><br>
    <% end %>
    To: Brighton and Hove<br>

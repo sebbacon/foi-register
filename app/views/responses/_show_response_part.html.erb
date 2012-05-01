@@ -1,7 +1,11 @@
  <div class="response well">
   <div class="correspondence-header">
    From: Brighton and Hove<br>
-   To: <%= r.request.requestor %><br>
+   <% if is_admin_view? %>
+    To: <%= r.request.requestor %><br>
+   <% elsif r.request.is_requestor_name_visible %>
+    To: <%= r.request.requestor.name %><br>
+   <% end %>
    Sent: <%= r.created_at.to_s(:short) %>
   </div>
   <hr>
