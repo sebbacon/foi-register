@@ -9,7 +9,7 @@ class StaffMembersController < ApplicationController
   def create
     @staff_member = StaffMember.new(params[:staff_member])
     if @staff_member.save
-      redirect_to "/requests", :notice => "Created new staff member <#{@staff_member.email}>"
+      redirect_to "/admin/staff_members", :notice => "Created new staff member <#{@staff_member.email}>"
     else
       render "new"
     end
