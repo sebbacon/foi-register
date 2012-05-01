@@ -19,6 +19,7 @@ namespace :bootstrap do
                 
                 # XXXX ["done_exempt_s15", ...]
                ]
+    State.delete_all
     for tag, title, description in statuses
       State.create(:tag => tag, :title => title, :description => description)
     end
@@ -48,9 +49,10 @@ namespace :bootstrap do
       end
     end
     
+    LgcsTerm.delete_all
     each_lgcs_item do |item|
       Rails.logger.info "Creating LGCS term '#{item[:name]}' with id #{item[:id]}"
-      term = LGCSTerm.new(item)
+      term = LgcsTerm.new(item)
       term.id = item[:id]
       term.save!
     end
