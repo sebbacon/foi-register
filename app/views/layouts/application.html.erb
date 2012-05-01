@@ -11,25 +11,26 @@
     <div class="navbar">
       <div class="navbar-inner">
         <div class="container">
-	  <a class="brand">Foi Manager</a>
-	  <ul class="nav">
-	    <li class="active">
-	      <a href="/">Home</a>
-	    </li>
+	      <a class="brand">Foi Manager</a>
+	      <ul class="nav">
+	        <li class="active"><a href="/">Home</a></li>
             <li><%= link_to "Manage requests", "/requests/" %></li>
             <li><%= link_to "Manage users", "/requestors/" %></li>
+          </ul>    
 
-	  </ul>    
+	     <form class="navbar-search pull-left" action="">
+           <input type="text" class="search-query span2" placeholder="Search">
+         </form> 
 
-	  <form class="navbar-search pull-left" action="">
-            <input type="text" class="search-query span2" placeholder="Search">
-          </form> 
+         <ul class="nav pull-right">
+           <li><%= link_to "Log out", "/sessions/logout" %></li>
+          </ul>
         </div>
       </div>
     </div>
    <% end %>
-<div class="container">
-   <%= yield %>
-</div>
+   <div class="container">
+     <%= yield %>
+   </div>
 </body>
 </html>

@@ -23,4 +23,30 @@ class StaffMembersController < ApplicationController
       format.json { render :json => @staff_members }
     end
   end
+  
+  def edit
+    @staff_member = StaffMember.find(params[:id])
+  end
+  def update
+    @staff_member = StaffMember.find(params[:id])
+
+    respond_to do |format|
+      if @staff_member.update_attributes(params[:staff_member])
+        format.html { redirect_to "/staff_members", :notice => "Staff member <#{@staff_member}> was successfully updated." }
+        format.json { head :no_content }
+      else
+        format.html { render :action => "edit" }
+        format.json { render :json => @state.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+  def destroy
+    @staff_member = StaffMember.find(params[:id])
+    @staff_member.destroy
+
+    respond_to do |format|
+      format.html { redirect_to staff_members_url, :notice => "Staff member <#{@staff_member}> was successfully deleted." }
+      format.json { head :no_content }
+    end
+  end
 end
