@@ -31,5 +31,7 @@ $ ->
   .bind "focus", (event) ->
     lgcs_term.val ""
     lgcs_term_id.val ""
+  .bind "blur", (event) ->
+    lgcs_term.val("") if !lgcs_term_id.val()
 
   $('span.state').tooltip()
