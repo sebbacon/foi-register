@@ -3,6 +3,7 @@ FoiRegister::Application.routes.draw do
   resources :attachments
 
   get "ajax/requestors"
+  get "ajax/lgcs_terms"
 
   resources :states
 
