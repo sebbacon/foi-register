@@ -2,18 +2,19 @@
 #
 # Table name: attachments
 #
-#  id           :integer         not null, primary key
-#  created_at   :datetime        not null
-#  updated_at   :datetime        not null
-#  file         :string(255)     not null
-#  response_id  :integer         not null
-#  content_type :text            not null
-#  size         :integer         not null
+#  id                       :integer         not null, primary key
+#  created_at               :datetime        not null
+#  updated_at               :datetime        not null
+#  file                     :string(255)     not null
+#  content_type             :text            not null
+#  size                     :integer         not null
+#  request_or_response_id   :integer
+#  request_or_response_type :string(255)
 #
 
 class Attachment < ActiveRecord::Base
   mount_uploader :file, AttachmentUploader
-  belongs_to :response
+  belongs_to :request_or_response, :polymorphic => true
   before_save :update_metadata
   
   private

@@ -12,7 +12,7 @@
 
 class Response < ActiveRecord::Base
   belongs_to :request
-  has_many :attachments
+  has_many :attachments, :as => :request_or_response
   accepts_nested_attributes_for :attachments
   accepts_nested_attributes_for :request
 
