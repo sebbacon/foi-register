@@ -1,8 +1,5 @@
 class SessionsController < ApplicationController
-  def initialize(*params)
-    super(*params)
-    @does_not_require_login = true
-  end
+  skip_before_filter :require_login
   
   def new
   end
