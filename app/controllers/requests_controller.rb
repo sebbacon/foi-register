@@ -4,11 +4,17 @@ class RequestsController < ApplicationController
   def index
     @requests = Request.paginate(:page => params[:page], :per_page => 5).order('coalesce(date_received, created_at) DESC')
     @badge = "all"
-
+    
+    if self.is_admin?
+      template = "index"
+    else
+      template = "public_index"
+    end
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render :action => template }
       format.json { render :json => @requests }
     end
+
   end
 
   # GET /requests/overdue
