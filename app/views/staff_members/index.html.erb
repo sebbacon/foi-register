@@ -1,3 +1,7 @@
+<% if flash[:notice] %>
+    <div id="notice"><%= flash[:notice] %></div>
+<% end %>
+
 <div class="page-header span9 offset3">
   <% if @staff_members.empty? %>
     <h1>No staff yet</h1>
@@ -17,8 +21,8 @@
    <tbody>
    <% @staff_members.each do |staff_member| %>
     <tr>
-      <td><%= user.email %></td>
-      <td><%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_user_path(staff_member) %></td>
+      <td><%= staff_member.email %></td>
+      <td><%= link_to '<i class="icon-pencil"></i>'.html_safe, edit_staff_member_path(staff_member) %></td>
       <td><%= link_to '<i class="icon-trash"></i>'.html_safe, staff_member, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
    <% end %>
