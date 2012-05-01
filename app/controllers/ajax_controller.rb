@@ -16,9 +16,9 @@ class AjaxController < ApplicationController
 
   def lgcs_terms
     if params[:term]
-      lgcs_terms = LGCSTerm.where("name like '%'||?||'%'", params[:term])
+      lgcs_terms = LgcsTerm.where("name like '%'||?||'%'", params[:term])
     else
-      lgcs_terms = LGCSTerm.all
+      lgcs_terms = LgcsTerm.all
     end
     list = lgcs_terms.map do |lgcs_term|
       {

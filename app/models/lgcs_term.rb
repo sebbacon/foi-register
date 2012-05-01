@@ -10,10 +10,10 @@
 
 # A term of the LGCS taxonomy, used for classifying the subject of requests
 
-class LGCSTerm < ActiveRecord::Base
-  belongs_to :broader_term, :class_name => 'LGCSTerm',
+class LgcsTerm < ActiveRecord::Base
+  belongs_to :broader_term, :class_name => 'LgcsTerm',
              :foreign_key => "broader_term_id"
-  has_many :child_terms, :class_name => 'LGCSTerm',
+  has_many :child_terms, :class_name => 'LgcsTerm',
            :inverse_of => :broader_term, :foreign_key => "broader_term_id", :order => "id"
   has_many :requests
   
