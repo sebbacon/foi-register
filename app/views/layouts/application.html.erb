@@ -1,8 +1,28 @@
-<!DOCTYPE html>
+<%# To include this as an iframe, do something like
+<iframe src="http://foi.app.domain/requests" width="650" height="100%" style="border: 0px solid #fff"></iframe> 
+%><!DOCTYPE html>
 <html>
 <head>
   <title>FoiRegister</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <% if !is_admin_view? %>
+    <%= stylesheet_link_tag   "http://www.brighton-hove.gov.uk/web/sites/bhcc/css/main11.css", :media => "all" %>
+    <style>
+      a {
+        color: #0000EE;
+        text-decoration: underline;
+      }
+      a:visited {
+        color: #551A8B;
+      }
+      a:active {
+        color: #EE0000;
+      }
+      hr {
+        border-color: #DFEEFF;
+      }
+    </style>
+  <% end %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
@@ -34,8 +54,12 @@
       </div>
     </div>
   <% end %>
-  <div class="container">
+  <% if is_admin_view? %>
+   <div class="container">
     <%= yield %>
-  </div>
+   </div>
+  <% else %>
+   <%= yield %>
+  <% end %>
 </body>
 </html>
