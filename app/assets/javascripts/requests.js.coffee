@@ -33,5 +33,10 @@ $ ->
     lgcs_term_id.val ""
   .bind "blur", (event) ->
     lgcs_term.val("") if !lgcs_term_id.val()
+  
+  state_select = $ '#request_state_attributes_id'
+  state_description = $ '#state-description'
+  state_select.bind "change", (ev) ->
+    state_description.text(state_select.find("option[value=" + state_select.val() + "]").attr("title"))
 
   $('span.state').tooltip()
