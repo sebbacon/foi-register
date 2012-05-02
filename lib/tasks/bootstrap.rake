@@ -17,8 +17,31 @@ namespace :bootstrap do
                 ["done_supplied_all", "All information supplied", "All the requested information has been supplied"],
                 ["done_supplied_some", "Some information supplied", "Some of the requested information has been supplied"],
                 
-                # XXXX ["done_exempt_s15", ...]
-               ]
+                # Exemptions guidance is at http://www.justice.gov.uk/information-access-rights/foi-guidance-for-practitioners/exemptions-guidance
+                ["done_exempt_s21", "Exempt under Section 21", "Exempt: Information Accessible By Other Means"],
+                ["done_exempt_s22", "Exempt under Section 22", "Exempt: Information Intended For Future Publication"],
+                ["done_exempt_s23", "Exempt under Section 23", "Exempt: Information Supplied by, or Related to, Bodies Dealing with Security Matters"],
+                ["done_exempt_s24", "Exempt under Section 24", "Exempt: National Security"],
+                ["done_exempt_s26", "Exempt under Section 26", "Exempt: Defence"],
+                ["done_exempt_s27", "Exempt under Section 27", "Exempt: International Relations"],
+                ["done_exempt_s28", "Exempt under Section 28", "Exempt: Relations Within The United Kingdom"],
+                ["done_exempt_s29", "Exempt under Section 29", "Exempt: The Economy"],
+                ["done_exempt_s30", "Exempt under Section 30", "Exempt: Investigations And Proceedings Conducted By Public Authorities"],
+                ["done_exempt_s31", "Exempt under Section 31", "Exempt: Law Enforcement"],
+                ["done_exempt_s32", "Exempt under Section 32", "Exempt: Court Records"],
+                ["done_exempt_s33", "Exempt under Section 33", "Exempt: Audit Functions"],
+                ["done_exempt_s34", "Exempt under Section 34", "Exempt: Parliamentary Privilege"],
+                ["done_exempt_s35", "Exempt under Section 35", "Exempt: Formulation Of Government Policy"],
+                ["done_exempt_s36", "Exempt under Section 36", "Exempt: Prejudice to Effective Conduct of Public Affairs"],
+                ["done_exempt_s37", "Exempt under Section 37", "Exempt: Communications With Her Majesty, With Other Members Of The Royal Household, And The Conferring By The Crown Of Any Honour Or Dignity"],
+                ["done_exempt_s38", "Exempt under Section 38", "Exempt: Health And Safety"],
+                ["done_exempt_s39", "Exempt under Section 39", "Exempt: Environmental Information"],
+                ["done_exempt_s40", "Exempt under Section 40", "Exempt: Personal Information"],
+                ["done_exempt_s41", "Exempt under Section 41", "Exempt: Information Provided In Confidence"],
+                ["done_exempt_s42", "Exempt under Section 42", "Exempt: Legal Professional Privilege"],
+                ["done_exempt_s43", "Exempt under Section 43", "Exempt: Commercial Interests"],
+                ["done_exempt_s44", "Exempt under Section 44", "Exempt: Prohibitions On Disclosure"],
+              ]
     State.delete_all
     for tag, title, description in statuses
       State.create(:tag => tag, :title => title, :description => description)
